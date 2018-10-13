@@ -1,0 +1,33 @@
+<html lang="en-US">
+<head>
+	<script type="text/javascript">
+		var timestamp=new Date().getTime()-1000;
+		var count=0;
+		function flicker(delay) {
+		count++;
+		var r1=0;var r2=0;var g1=0;var g2=0;var b1=0;var b2=0;
+		r1=Math.floor((Math.random()*16)).toString(16);
+		r2=Math.floor((Math.random()*16)).toString(16);
+		g1=Math.floor((Math.random()*16)).toString(16);
+		g2=Math.floor((Math.random()*16)).toString(16);
+		b1=Math.floor((Math.random()*16)).toString(16);
+		b2=Math.floor((Math.random()*16)).toString(16);
+		color='#'+r1+r2+g1+g2+b1+b2;
+		// Setting the background color to a different value than the existing
+		// is forcing a re-render and that doubles the speed of the page render!
+		document.body.style.backgroundColor=color;
+		var time=Math.floor((new Date().getTime()-timestamp) / 1000);
+		var fps=Math.floor(count / time);
+		document.body.innerHTML='<pre>Color: '+color+'  FPS: '+fps+'</pre>';
+		setTimeout(flicker, 0);
+	}
+	</script>
+</head>
+<body><pre>Hey</pre>
+	<script>
+		// setInterval is 20% less accurate than set Timeout!
+		// setInterval(flicker, 0);
+		setTimeout(flicker, Math.floor((Math.random() * 100)));
+</script>
+</body>
+</html>
